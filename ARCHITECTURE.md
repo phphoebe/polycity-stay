@@ -4,29 +4,27 @@
 
 **Hierarchical orchestration + sequential pipeline:** a single Python entrypoint runs **four specialist agents** in order. There is no single “manager” LLM that delegates via handoffs; the **orchestrator is code** (`pipeline.py`), which matches the course idea of *central coordination* while keeping control flow explicit for debugging and demos.
 
-The diagram below is laid out like a **node canvas** (similar to n8n / Make): trigger on the left, steps left-to-right, and a **data store** wired underneath. Unlike a *parallel* lead-qualification workflow, this MVP is **strictly sequential**—each stage consumes the previous output.
+The diagram below is laid out like a **node canvas** (similar to n8n / Make): **main flow is left-to-right**; the **SQLite** node usually sits **below** that row (dashed `persist` edges). Unlike a *parallel* lead-qualification workflow, this MVP is **strictly sequential**—each stage consumes the previous output.
 
 ```mermaid
-flowchart TB
+flowchart LR
     classDef trigger fill:#e85d3d,stroke:#1e1e2e,color:#fff
     classDef orch fill:#3d3d52,stroke:#6366f1,color:#f4f4f8
     classDef ai fill:#2a2a3d,stroke:#8b8cc7,color:#e8e8f2
     classDef out fill:#0d9488,stroke:#134e4a,color:#ecfdf5
     classDef db fill:#14532d,stroke:#22c55e,color:#dcfce7
 
-    subgraph run["PolyCity pipeline — sequential (orchestrator = code)"]
-        direction LR
-        T([⚡ Streamlit<br/>form submit]):::trigger
-        O[Orchestrator<br/>pipeline.py]:::orch
-        A1[Retrieval<br/>PolyCityRetrieval<br/>seed + tools]:::ai
-        A2[Scoring<br/>PolyCityScoring]:::ai
-        A3[Checker<br/>PolyCityChecker]:::ai
-        A4[Buddy<br/>PolyCityBuddy]:::ai
-        R([📄 Markdown report]):::out
-        T --> O --> A1 --> A2 --> A3 --> A4 --> R
-    end
-
+    T([⚡ Streamlit<br/>form submit]):::trigger
+    O[Orchestrator<br/>pipeline.py]:::orch
+    A1[Retrieval<br/>PolyCityRetrieval<br/>seed + tools]:::ai
+    A2[Scoring<br/>PolyCityScoring]:::ai
+    A3[Checker<br/>PolyCityChecker]:::ai
+    A4[Buddy<br/>PolyCityBuddy]:::ai
+    R([📄 Markdown report]):::out
     DB[(SQLite · polycity_memory.db<br/>runs + stage logs)]:::db
+
+    T --> O --> A1 --> A2 --> A3 --> A4 --> R
+
     O -.->|persist| DB
     A1 -.->|persist| DB
     A2 -.->|persist| DB
