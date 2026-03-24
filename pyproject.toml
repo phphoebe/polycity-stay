@@ -1,0 +1,13 @@
+[project]
+name = "polycity-stay"
+version = "0.1.0"
+description = "PolyCity Stay — multi-agent long-stay hotel scout (CityU & PolyU, Ollama)"
+requires-python = ">=3.11"
+dependencies = [
+    "beautifulsoup4>=4.14.3",
+    "httpx>=0.28.1",
+    "openai>=2.29.0",
+    "openai-agents>=0.13.0",
+    "python-dotenv>=1.2.2",
+    "streamlit>=1.55.0",
+]

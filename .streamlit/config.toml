@@ -1,0 +1,10 @@
+# PolyCity Stay — calm “techy” accent (indigo / slate) instead of default red
+# Docs: https://docs.streamlit.io/develop/concepts/configuration/custom-theme
+
+[theme]
+base = "dark"
+primaryColor = "#6366f1"
+backgroundColor = "#0f111a"
+secondaryBackgroundColor = "#1a1f2e"
+textColor = "#e8e9ef"
+font = "sans serif"
