@@ -1,6 +1,6 @@
 # PolyCity Stay 🏙️
 
-**Kowloon long-stay hotel scout for master’s students** — because fighting HK rental listings at 2am is *not* the vibe. Pick **CityU** or **PolyU**, dial in your MTR / shower / desk / budget non-negotiables, and let a small team of agents dig through seed data (plus optional page fetch) to spit out a ranked, emoji-friendly report. Typhoon day? Near the MTR. External monitor? They’ll side-eye the desk notes. Milk tea not included 🧋
+**Kowloon 🇭🇰 long-stay hotel scout for master’s students** — because fighting HK rental listings at 2am is *not* the vibe. Pick **CityU** or **PolyU**, dial in your MTR / shower / desk / budget non-negotiables, and let a small team of agents dig through seed data (plus optional page fetch) to spit out a ranked, emoji-friendly report. Typhoon day? Near the MTR. External monitor? They’ll side-eye the desk notes. Milk tea not included 🧋
 
 Under the hood it’s a **Python** app: **OpenAI Agents SDK** + **Ollama** (default `qwen2.5:7b`) + **SQLite** so runs don’t vanish into the void. Report language: **English** or **简体中文** — hotel names show **English · 简体** for easy copy-paste to maps and chats.
 
